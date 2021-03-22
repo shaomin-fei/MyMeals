@@ -17,6 +17,8 @@ import {
   Lato_400Regular,
 } from "@expo-google-fonts/lato";
 
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
 import { RestaurantScreen } from "./src/features/restaurants/screens/RestaurantScreen";
 import { SettingScreen } from "./src/features/restaurants/screens/SettingScreen";
 import { MapScreen } from "./src/features/restaurants/screens/MapScreen";

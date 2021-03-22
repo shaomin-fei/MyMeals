@@ -4,22 +4,27 @@
  * @Author: Shaomin Fei
  * @Date: 2021-03-21 15:51:17
  */
-import { mocks } from "./mock/index";
+import { mocks, mockImages } from "./mock/index";
 import camelize from "camelize";
 
 import { RestaurantInfoDetail } from "../../flow-types/RestaurantInfoType";
-export const restaurantDataTransform = (data: Object[] = []): Object => {
-  const details = data.map((restaurant) => {
-    const detail = new RestaurantInfoDetail();
-    const dt = restaurant.result;
-    detail.name = dt.name;
-    detail.photos = dt.photos;
-    detail.rating = dt.rating;
-    detail.isOpenNow = dt.opening_hours && dt.opening_hours.open_now;
-    detail.isCloseTemporarily = dt.business_status === "CLOSED_TEMPORARILY";
-    detail.address = dt.vicinity;
-    return detail;
-  });
+export const restaurantDataTransform = (data: Object): Object => {
+  const details =
+    data &&
+    data.results.map((dt) => {
+      const detail = new RestaurantInfoDetail();
+      detail.photos = dt.photos.map((photo) => {
+        const index = Math.ceil(Math.random() * 10) % mockImages.length;
+        return mockImages[index];
+      });
+      //const dt = restaurant.result;
+      detail.name = dt.name;
+      detail.rating = dt.rating;
+      detail.isOpenNow = dt.opening_hours && dt.opening_hours.open_now;
+      detail.isCloseTemporarily = dt.business_status === "CLOSED_TEMPORARILY";
+      detail.address = dt.vicinity;
+      return detail;
+    });
   return camelize(details);
 };
 export const restaurantRequest = (
@@ -28,7 +33,7 @@ export const restaurantRequest = (
     location,
   }: {
     location: string,
-  } = { location: "chicago" }
+  } = { location: "41.878113,-87.629799" }
 ): Promise<any> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

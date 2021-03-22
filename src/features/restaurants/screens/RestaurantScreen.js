@@ -19,7 +19,7 @@ import { RestaurantInfoDetail } from "../../../flow-types/RestaurantInfoType";
 import { Spacer } from "../../../components/Spacer";
 import { Text } from "../../../components/typography/Text";
 import { restaurantContext } from "../../../services/restaurant/restaurant.context";
-
+import { Loading } from "../../../components/loading/Loading";
 const SearchView = styled.View`
   padding: ${(props) => props.theme.sizes.normal};
 `;
@@ -36,11 +36,13 @@ const StyledSafeAreaView = styled(SafeAreaView)`
   flex: 1;
 `;
 export const RestaurantScreen = (): React.Element<*> => {
-  const restaurantInfoDetail = new RestaurantInfoDetail();
   const context = React.useContext(restaurantContext);
   const restaurants = context.restaurants;
+  const isLoading = context.isLoading;
+  const error = context.error;
   return (
     <StyledSafeAreaView>
+      {isLoading && <Loading />}
       <SearchView>
         <Searchbar placeholder="Search" />
       </SearchView>
@@ -49,13 +51,15 @@ export const RestaurantScreen = (): React.Element<*> => {
       <ListView>
         <FatListVWithPadding
           data={restaurants}
-          renderItem={(item, index, separators) => (
-            <>
-              <RestaurantInfoCard restaurantInfoDetail={restaurantInfoDetail} />
-            </>
-          )}
+          renderItem={({ item, index, separators }) => {
+            return (
+              <>
+                <RestaurantInfoCard restaurantInfoDetail={item} />
+              </>
+            );
+          }}
           keyExtractor={(item: { title: string, key: string }, index: number) =>
-            item.key
+            index.toString()
           }
         />
       </ListView>

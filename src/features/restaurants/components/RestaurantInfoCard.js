@@ -1,4 +1,9 @@
 //@flow
+/*
+ * @Description:
+ * @Author: Shaomin Fei
+ * @Date: 2021-03-20 21:02:36
+ */
 import * as React from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
@@ -60,9 +65,13 @@ export const RestaurantInfoCard = (props: Props): React.Element<*> => {
   for (let i = 0; i < Math.round(restaurantInfoDetail.rating); i++) {
     starArray.push(<SvgXml key={i} width={20} height={20} xml={Star} />);
   }
+  const photoUrl =
+    restaurantInfoDetail.photos.length > 0
+      ? restaurantInfoDetail.photos[0]
+      : "https://picsum.photos/700";
   return (
     <RestaurandCard elevation={5}>
-      <RestaurandCardCover source={{ uri: "https://picsum.photos/700" }} />
+      <RestaurandCardCover source={{ uri: photoUrl }} />
       <RestaurantBaseInfo>
         <RestaurantTitle vairant="body">
           {restaurantInfoDetail.name}

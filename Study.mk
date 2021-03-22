@@ -197,7 +197,7 @@ Copy default configuration + modify configuration, RESTART is effective
   "fileheader.customMade": {
     
     "Description": "",
-    "Author": "Shaomin Fei",
+    "Author": "your name",
     "Date": ""
   },
 
@@ -205,7 +205,7 @@ Copy default configuration + modify configuration, RESTART is effective
 
   "fileheader.cursorMode": {
   
-    "Author": "",
+    "Author": "your name",
     "Description": "",
     "param": "",
     "return": ""
@@ -230,3 +230,22 @@ it's a package used to formalize string into cam style, like user_rating ---> us
     location: string,
   } = { location: "chicago" }
 ): Promise<any> =>{}
+
+26 debug process:
+** install extension "React Native Tools"
+** config launch.json, add debug attach packager like:
+{
+      "name": "Attach to packager",
+      "cwd": "${workspaceFolder}",
+      "type": "reactnative",
+      "request": "attach",
+      "port": "19000",
+      "sourceMaps": true
+    },
+    NOTICE: some times the port is 19000, find the real one: when run the yarn start and it should be on the opened page.
+
+** input yarn start to start the expo packager
+** hit debug button, In the Debug Console window, you should see that the debugger is now attached to the packager.
+** go back to the console and launch your app on the desired target. i.e: 'a' for android.
+** set the breakpoint, go to the emulator, ctrl+m open the menue, turn on the Remote debuging options
+** Reload on emulator

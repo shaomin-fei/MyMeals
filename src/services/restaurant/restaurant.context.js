@@ -5,11 +5,8 @@
  * @Date: 2021-03-21 15:51:26
  */
 import * as React from "react";
-import { useState, createContext, useMemo, useEffect } from "react";
-import {
-  restaurantDataTransform,
-  restaurantRequest,
-} from "./restaurant.service";
+import { useState, createContext, useEffect } from "react";
+import { restaurantRequest } from "./restaurant.service";
 
 export const restaurantContext: React.Context<any> = createContext();
 export const RestaurantContextProvider = ({
@@ -25,21 +22,20 @@ export const RestaurantContextProvider = ({
     restaurantRequest()
       .then((result) => {
         setIsLoading(false);
+        setRestaurants(result);
       })
       .catch((errorInfo: string): void => {
         setIsLoading(false);
         setError(errorInfo);
+        console.log("error get restaurants");
       });
   }, []);
   return (
     <restaurantContext.Provider
       value={{
-        restaurants: [
-          { title: "1", key: "0" },
-          { title: "2", key: "1" },
-          { title: "3", key: "2" },
-          { title: "4", key: "3" },
-        ],
+        restaurants,
+        isLoading,
+        error,
       }}
     >
       {children}
