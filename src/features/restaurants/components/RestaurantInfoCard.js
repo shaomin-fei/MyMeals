@@ -13,6 +13,10 @@ type Props = {
 };
 const RestaurandCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
+  margin-bottom: ${(props) => props.theme.sizes.normal};
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: #ccc;
 `;
 const RestaurandCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.sizes.normal};

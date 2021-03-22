@@ -164,8 +164,69 @@ Lato is font you want,notice all font name is lowercase
 \*\*
 
 18. update expo go
-    sometimes when expo go is not the latest one, simulator will not work, then we need to update
-    **npm install -g expo-cli
-    **delete virtual device, because in the previous device, the expo go is not latest one
-    **add new virtual device
-    **run npm run android, this command will install latest expo go on the new virtual device
+    sometimes when expo go is not the latest one, simulator will not work, then we need to update.
+    but update operation usually doesn't work, then we need do some steps as follows:
+    **create a new folder, use expo init create a new project
+    **test if this project could run normally
+    **if it is, then the environment is not broken,copy the code files and config files from the original director to the new director
+    **rename the new project
+
+19 install react native navigation,two steps
+**yarn add @react-navigation/native
+**expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+20 SafeArea
+According to https://reactnavigation.org/docs/handling-safe-area, the SafeAreaView exported by react native has some incompatible issures and recommend us using the react-native-safe-area-context library to handle safe areas in a more reliable way
+
+21 use export class name as type in flow
+don't forget to add //@flow in both export and import file, or flow can't the declare class
+22 use extension koroFileHeader to add file header and function comment
+usage:
+https://www.programmersought.com/article/944678456/
+hot key for function:window：ctrl+alt+t,mac：ctrl+cmd+t
+hot key for hearder:window：ctrl+alt+i,mac：ctrl+cmd+i
+Custom template:
+
+In user settings, search fileheader
+
+
+Copy default configuration + modify configuration, RESTART is effective
+  
+  **find customMade, modify content:
+
+  "fileheader.customMade": {
+    
+    "Description": "",
+    "Author": "Shaomin Fei",
+    "Date": ""
+  },
+
+  **find cursorMode, modify content:
+
+  "fileheader.cursorMode": {
+  
+    "Author": "",
+    "Description": "",
+    "param": "",
+    "return": ""
+  },
+**find Config Obj, click open json file, scroll down to find beforeAnnotation, modify content if you need flow to check syntax:
+   "beforeAnnotation": {
+      "js": "//@flow",
+      "jsx": "//@flow"
+    },
+
+
+23 expo icons
+https://icons.expo.fyi/
+https://fontawesome.com/icons?d=gallery&p=2 
+24 camelize
+it's a package used to formalize string into cam style, like user_rating ---> userRating
+25 how to set default value with Flow(
+  // how to set default value with flow
+  {
+    location,
+  }: {
+    location: string,
+  } = { location: "chicago" }
+): Promise<any> =>{}

@@ -9,10 +9,10 @@ import { defaultThem } from "../infrastructure/theme/index";
 //   large: sizes.lg,
 // };
 const positionVariable = {
-  top: "marginTop",
-  bottom: "marginBottom",
-  left: "marginLeft",
-  right: "marginRight",
+  top: "margin-top",
+  bottom: "margin-bottom",
+  left: "margin-left",
+  right: "margin-right",
 };
 
 const getProperView = (
@@ -20,25 +20,27 @@ const getProperView = (
   size: string,
   theme: typeof defaultThem
 ): string => {
+  //console.log(`${positionVariable[position]}:${theme.sizes[size]}`);
   return `${positionVariable[position]}:${theme.sizes[size]}`;
 };
 type Props = {
   position: string,
   size: string,
-  children: Array<Object>,
+  children: Object,
 };
-// const SpacerView = styled.View`
-//   ${({ variant }) => variant}
-// `;
-const SpacerView: Object = styled.View`
-  ${({ position, size, theme }) => getProperView(position, size, theme)}
+const SpacerView = styled.View`
+  ${({ variant }) => variant}
 `;
+// const SpacerView: Object = styled.View`
+//   ${({ position, size, theme }) => getProperView(position, size, theme)}
+// `;
 
 export const Spacer = (props: Props): React.Element<*> => {
-  // const theme = useTheme();
-  // const variant = getProperView(props.position, props.size, theme);
-  // return <SpacerView variant={variant}>{props.children}</SpacerView>;
-  return <SpacerView {...props}>{props.children}</SpacerView>;
+  const theme = useTheme();
+  const variant = getProperView(props.position, props.size, theme);
+  return <SpacerView variant={variant}>{props.children}</SpacerView>;
+  // console.log(props);
+  // return <SpacerView {...props}>{props.children}</SpacerView>;
 };
 //this way can't work on android,actually we can't directly export sytled-componet like below on Android
 //We should wrap it in another component like above. !!!!!!!!VERY IMPORTANT
@@ -50,4 +52,5 @@ export const Spacer = (props: Props): React.Element<*> => {
 Spacer.defaultProps = {
   position: "top",
   size: "normal",
+  children: null,
 };

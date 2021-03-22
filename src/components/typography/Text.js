@@ -52,6 +52,6 @@ export const Text = (props: Props): React.Element<*> => {
 };
 
 Text.defaultProps = {
-  vairant: "",
+  vairant: "body",
   children: null,
 };
