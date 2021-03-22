@@ -249,3 +249,6 @@ it's a package used to formalize string into cam style, like user_rating ---> us
 ** go back to the console and launch your app on the desired target. i.e: 'a' for android.
 ** set the breakpoint, go to the emulator, ctrl+m open the menue, turn on the Remote debuging options
 ** Reload on emulator
+
+27 Flow ?: and :?
+**the former one indicates the param could miss, the latter one means the param must have, but the type is not sure
