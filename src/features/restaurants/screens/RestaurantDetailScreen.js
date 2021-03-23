@@ -16,12 +16,16 @@ import { RestaurantInfoDetail } from "../../../flow-types/RestaurantInfoType";
 
 export const RestaurantDetailScreen = ({
   route,
+  navigation,
 }: {
   route: Object,
+  navigation: Object,
 }): React.Element<*> => {
   const restaurantInfoDetail: RestaurantInfoDetail =
     route.params.restaurantDetail;
-
+  // we can get navigation here, which means we can navigate to another screen, like add
+  //button to return to the main screen
+  //   console.log("navigation", navigation);
   const [expandBreakfast, setExpandBreakfast] = useState(true);
   const [expandLunch, setExpandLunch] = useState(true);
   const [expandDinner, setExpandDinner] = useState(true);

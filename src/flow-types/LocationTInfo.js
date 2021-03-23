@@ -6,16 +6,16 @@
  */
 
 export class LatLng {
-  lat: string = "";
-  lng: string = "";
-  constructor(lat: string = "", lng: string = "") {
+  lat: number = 0;
+  lng: number = 0;
+  constructor(lat: number = 0, lng: number = 0) {
     this.lat = lat;
     this.lng = lng;
   }
 }
 export class ViewPort {
-  northeast: LatLng | null = null;
-  southwest: LatLng | null = null;
+  northeast: LatLng = new LatLng();
+  southwest: LatLng = new LatLng();
 }
 export class LocationInfo {
   geometry: LatLng = new LatLng();

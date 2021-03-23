@@ -8,7 +8,7 @@
 import { locations } from "./mock/LocationMock";
 import { LocationInfo, LatLng } from "../../flow-types/LocationTInfo";
 
-export const requestLocation = (location: string): Promise<any> => {
+export const requestLocation = (location: string): Promise<LocationInfo> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const data = locations[location];
@@ -36,17 +36,17 @@ export const locationTransform = (data: Object[]): Object[] | null => {
       loc.geometry.location.lng
     );
 
-    loc.viewport &&
-      loc.viewport.northeast &&
+    loc.geometry.viewport &&
+      loc.geometry.viewport.northeast &&
       (locInfo.viewport.northeast = new LatLng(
-        loc.viewport.northeast.lat,
-        loc.viewport.northeast.lng
+        loc.geometry.viewport.northeast.lat,
+        loc.geometry.viewport.northeast.lng
       ));
-    loc.viewport &&
-      loc.viewport.southwest &&
+    loc.geometry.viewport &&
+      loc.geometry.viewport.southwest &&
       (locInfo.viewport.southwest = new LatLng(
-        loc.viewport.southwest.lat,
-        loc.viewport.southwest.lng
+        loc.geometry.viewport.southwest.lat,
+        loc.geometry.viewport.southwest.lng
       ));
     return locInfo;
   });

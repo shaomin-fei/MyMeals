@@ -18,8 +18,17 @@ import { Spacer } from "../../../components/Spacer";
 import { Text } from "../../../components/typography/Text";
 import { restaurantContext } from "../../../services/restaurant/restaurant.context";
 import { Loading } from "../../../components/loading/Loading";
-import { SearchLocationBar } from "../components/SearchBar";
+import {
+  SearchLocationBar,
+  SearchLocationBarProps,
+} from "../components/SearchBar";
 import { RestaurantInfoDetail } from "../../../flow-types/RestaurantInfoType";
+import {
+  FavouriteContext,
+  FavouriteContexValues,
+} from "../../../services/favourites/FavouriteContext";
+
+import { FavouriteBar } from "../../../components/FavouriteBar";
 
 const ListView = styled.View`
   background-color: ${(props) => props.theme.colors.bg.secondary};
@@ -41,12 +50,29 @@ export const RestaurantScreen = ({
   const context = React.useContext(restaurantContext);
   const restaurants = context.restaurants;
   const isLoading = context.isLoading;
-  const error = context.error;
+  const favouriteContext: FavouriteContexValues = React.useContext(
+    FavouriteContext
+  );
+  const [isToggled, setIsToggled] = React.useState(false);
+  const taggleChanged = (toggled) => {
+    setIsToggled(toggled);
+  };
+
+  const searchProps = new SearchLocationBarProps();
+  searchProps.isToggled = isToggled;
+  searchProps.setIsToggled = taggleChanged;
+
   return (
     <StyledSafeAreaView>
       {isLoading && <Loading />}
 
-      <SearchLocationBar />
+      <SearchLocationBar searchProps={searchProps} />
+      {isToggled && (
+        <FavouriteBar
+          favourites={favouriteContext.favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
 
       {/* <Spacer /> */}
       {/* FatList's parent must set flex:1, or the list will be cut off(sometime Fatlist should set flex:1 too) */}

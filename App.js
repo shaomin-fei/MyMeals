@@ -19,12 +19,13 @@ import {
 
 import { RestaurantNavigator } from "./src/components/navigation-bar/RestaurantNavigator";
 import { SettingScreen } from "./src/features/restaurants/screens/SettingScreen";
-import { MapScreen } from "./src/features/restaurants/screens/MapScreen";
+import { MapScreen } from "./src/features/Map/screens/MapScreen";
 import { defaultThem } from "./src/infrastructure/theme/index";
 import { BottomNavitationBarNormal } from "./src/components/navigation-bar/BottomNavigationBarNormal";
 import { NavTabInfo } from "./src/components/navigation-bar/NavTabInfo";
 import { RestaurantContextProvider } from "./src/services/restaurant/restaurant.context";
 import { LocationContextProvider } from "./src/services/location/LocationContext";
+import { FavouriteContextProvider } from "./src/services/favourites/FavouriteContext";
 export default function App(): React.Element<*> | null {
   const [oswaldFontsLoaded] = useOswaldFont({
     Oswald_400Regular,
@@ -55,13 +56,15 @@ export default function App(): React.Element<*> | null {
   return (
     <>
       <ThemeProvider theme={defaultThem}>
-        <LocationContextProvider>
-          <RestaurantContextProvider>
-            <BottomNavitationBarNormal tabScreens={screens} />
+        <FavouriteContextProvider>
+          <LocationContextProvider>
+            <RestaurantContextProvider>
+              <BottomNavitationBarNormal tabScreens={screens} />
 
-            <StatusBar style="auto" />
-          </RestaurantContextProvider>
-        </LocationContextProvider>
+              <StatusBar style="auto" />
+            </RestaurantContextProvider>
+          </LocationContextProvider>
+        </FavouriteContextProvider>
       </ThemeProvider>
     </>
   );

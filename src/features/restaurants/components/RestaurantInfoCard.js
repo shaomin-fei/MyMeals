@@ -13,6 +13,7 @@ import Star from "../../../../assets/star";
 import Open from "../../../../assets/open";
 import { RestaurantInfoDetail } from "../../../flow-types/RestaurantInfoType";
 import { Text } from "../../../components/typography/Text";
+import { FavouriteIcon } from "../../../components/FavouriteIcon";
 type Props = {
   restaurantInfoDetail: RestaurantInfoDetail,
 };
@@ -71,6 +72,7 @@ export const RestaurantInfoCard = (props: Props): React.Element<*> => {
       : "https://picsum.photos/700";
   return (
     <RestaurandCard elevation={5}>
+      <FavouriteIcon restaurantInfoDetail={restaurantInfoDetail} />
       <RestaurandCardCover source={{ uri: photoUrl }} />
       <RestaurantBaseInfo>
         <RestaurantTitle vairant="body">

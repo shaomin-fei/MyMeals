@@ -23,6 +23,9 @@ export const restaurantDataTransform = (data: Object): Object => {
       detail.isOpenNow = dt.opening_hours && dt.opening_hours.open_now;
       detail.isCloseTemporarily = dt.business_status === "CLOSED_TEMPORARILY";
       detail.address = dt.vicinity;
+      detail.latlng.lat = dt.geometry.location.lat;
+      detail.latlng.lng = dt.geometry.location.lng;
+      detail.placeId = dt.place_id;
       return detail;
     });
   return camelize(details);
@@ -34,7 +37,7 @@ export const restaurantRequest = (
   }: {
     location: string,
   } = { location: "41.878113,-87.629799" }
-): Promise<any> => {
+): Promise<RestaurantInfoDetail[]> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const data = mocks[location];

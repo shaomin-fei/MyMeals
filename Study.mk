@@ -252,3 +252,18 @@ it's a package used to formalize string into cam style, like user_rating ---> us
 
 27 Flow ?: and :?
 **the former one indicates the param could miss, the latter one means the param must have, but the type is not sure
+28 Use map
+https://docs.expo.io/versions/latest/sdk/map-view/
+expo install react-native-maps
+
+28 React Native Image doesn't support web image in Android, so we need use react native webview
+https://docs.expo.io/versions/latest/sdk/webview/
+expo install react-native-webview
+
+29 async-storage
+https://docs.expo.io/versions/latest/sdk/async-storage/
+expo install @react-native-async-storage/async-storage
+
+30 //Flow type casting
+    return (result: RestaurantInfoDetail[]);
+    result is any, use this syntax, function will return  RestaurantInfoDetail[]
