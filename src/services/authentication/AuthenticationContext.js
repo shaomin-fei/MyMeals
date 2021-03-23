@@ -4,12 +4,15 @@
  * @Author: Shaomin Fei
  * @Date: 2021-03-23 09:36:54
  */
+import firebase from "firebase";
 import * as React from "react";
 import { createContext, useState } from "react";
 
 import {
   loginService,
   register as registerAccount,
+  accountLogout,
+  setAutStateChangeCallBack,
 } from "./AuthenticationService";
 
 export const AuthContext: React.Context<any> = createContext();
@@ -20,7 +23,7 @@ export class AuthcontextValue {
   isAuth: boolean = false;
   logIn: (string, string) => void;
   register: (string, string) => void;
-  logOut: () => void;
+  logout: () => void;
 }
 export const AuthContextProvider = ({
   children,
@@ -31,7 +34,18 @@ export const AuthContextProvider = ({
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
-
+  const authStateChangedCallback = (usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLogging(false);
+      setIsAuth(true);
+    } else {
+      setIsLogging(false);
+      setIsAuth(false);
+      setUser(null);
+    }
+  };
+  setAutStateChangeCallBack(authStateChangedCallback);
   const register = (username: string, password: string): void => {
     setIsLogging(true);
     setTimeout(() => {
@@ -66,6 +80,11 @@ export const AuthContextProvider = ({
         });
     }, 2000);
   };
+  const logout = () => {
+    accountLogout();
+    setIsAuth(false);
+    setUser(null);
+  };
   const contextValue = new AuthcontextValue();
   contextValue.isLogging = isLogging;
   contextValue.error = error;
@@ -73,6 +92,7 @@ export const AuthContextProvider = ({
   contextValue.user = user;
   contextValue.isAuth = isAuth;
   contextValue.register = register;
+  contextValue.logout = logout;
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );

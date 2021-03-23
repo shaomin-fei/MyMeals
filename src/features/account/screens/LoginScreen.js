@@ -73,6 +73,7 @@ export const LoginScreen = ({
             textValue={userInput}
             type="email"
             setTextValue={setUserInput}
+            atutoFocus={true}
           />
         </Spacer>
         <Spacer>

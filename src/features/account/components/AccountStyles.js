@@ -69,10 +69,12 @@ export const AccountInputBox = ({
   textValue,
   placehold,
   type,
+  atutoFocus,
 }: {
   errorMsg?: string,
   textValue: string,
   type: string,
+  atutoFocus?: boolean,
   placehold?: string,
   setTextValue: (string) => void,
 }): React.Element<*> => {
@@ -110,6 +112,7 @@ export const AccountInputBox = ({
       secureTextEntry={secureTextEntry}
       errorMessage={errorMsg}
       onChangeText={(txt) => setTextValue(txt)}
+      autoFocus={atutoFocus}
     />
   );
 };

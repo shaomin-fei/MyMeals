@@ -34,3 +34,14 @@ export const register = (
 ): Promise<Object> => {
   return firebase.auth().createUserWithEmailAndPassword(username, password);
 };
+
+export const accountLogout = () => {
+  firebase.auth().signOut();
+};
+let authStateChangeCallback: null | ((Object) => void) = null;
+export const setAutStateChangeCallBack = (callBack: () => void) => {
+  authStateChangeCallback = callBack;
+};
+// firebase.auth().onAuthStateChanged((usr) => {
+//   authStateChangeCallback && authStateChangeCallback(usr);
+// });

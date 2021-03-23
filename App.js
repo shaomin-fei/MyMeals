@@ -21,9 +21,6 @@ import {
 import { defaultThem } from "./src/infrastructure/theme/index";
 import { AppNavigationBar } from "./src/components/navigation-bar/AppNavigationBar";
 
-import { RestaurantContextProvider } from "./src/services/restaurant/restaurant.context";
-import { LocationContextProvider } from "./src/services/location/LocationContext";
-import { FavouriteContextProvider } from "./src/services/favourites/FavouriteContext";
 import { AuthContextProvider } from "./src/services/authentication/AuthenticationContext";
 
 export default function App(): React.Element<*> | null {
@@ -42,15 +39,9 @@ export default function App(): React.Element<*> | null {
     <>
       <ThemeProvider theme={defaultThem}>
         <AuthContextProvider>
-          <FavouriteContextProvider>
-            <LocationContextProvider>
-              <RestaurantContextProvider>
-                <AppNavigationBar />
+          <AppNavigationBar />
 
-                <StatusBar style="auto" />
-              </RestaurantContextProvider>
-            </LocationContextProvider>
-          </FavouriteContextProvider>
+          <StatusBar style="auto" />
         </AuthContextProvider>
       </ThemeProvider>
     </>
