@@ -6,6 +6,7 @@
  */
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components/native";
 import {
   useFonts as useOswaldFont,
@@ -17,15 +18,14 @@ import {
   Lato_400Regular,
 } from "@expo-google-fonts/lato";
 
-import { RestaurantNavigator } from "./src/components/navigation-bar/RestaurantNavigator";
-import { SettingScreen } from "./src/features/restaurants/screens/SettingScreen";
-import { MapScreen } from "./src/features/Map/screens/MapScreen";
 import { defaultThem } from "./src/infrastructure/theme/index";
-import { BottomNavitationBarNormal } from "./src/components/navigation-bar/BottomNavigationBarNormal";
-import { NavTabInfo } from "./src/components/navigation-bar/NavTabInfo";
+import { AppNavigationBar } from "./src/components/navigation-bar/AppNavigationBar";
+
 import { RestaurantContextProvider } from "./src/services/restaurant/restaurant.context";
 import { LocationContextProvider } from "./src/services/location/LocationContext";
 import { FavouriteContextProvider } from "./src/services/favourites/FavouriteContext";
+import { AuthContextProvider } from "./src/services/authentication/AuthenticationContext";
+
 export default function App(): React.Element<*> | null {
   const [oswaldFontsLoaded] = useOswaldFont({
     Oswald_400Regular,
@@ -37,34 +37,21 @@ export default function App(): React.Element<*> | null {
     //loading font is async, sometime, loading is not completed, but app is loading, then will report error
     return <></>;
   }
-  const screens = [];
-  const restaurantScreen = new NavTabInfo();
-  restaurantScreen.name = "Restaurant";
-  restaurantScreen.componentFunc = RestaurantNavigator;
-  screens.push(restaurantScreen);
-
-  const mapScreen = new NavTabInfo();
-  mapScreen.name = "Map";
-  mapScreen.componentFunc = MapScreen;
-  screens.push(mapScreen);
-
-  const settingScreen = new NavTabInfo();
-  settingScreen.name = "Setting";
-  settingScreen.componentFunc = SettingScreen;
-  screens.push(settingScreen);
 
   return (
     <>
       <ThemeProvider theme={defaultThem}>
-        <FavouriteContextProvider>
-          <LocationContextProvider>
-            <RestaurantContextProvider>
-              <BottomNavitationBarNormal tabScreens={screens} />
+        <AuthContextProvider>
+          <FavouriteContextProvider>
+            <LocationContextProvider>
+              <RestaurantContextProvider>
+                <AppNavigationBar />
 
-              <StatusBar style="auto" />
-            </RestaurantContextProvider>
-          </LocationContextProvider>
-        </FavouriteContextProvider>
+                <StatusBar style="auto" />
+              </RestaurantContextProvider>
+            </LocationContextProvider>
+          </FavouriteContextProvider>
+        </AuthContextProvider>
       </ThemeProvider>
     </>
   );

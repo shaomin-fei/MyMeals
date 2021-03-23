@@ -5,10 +5,10 @@
  * @Date: 2021-03-21 11:37:11
  */
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+
 //import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import type { NavTabInfo } from "./NavTabInfo";
@@ -41,26 +41,22 @@ const createTabBarOpt = ({ route }) => {
 export function BottomNavitationBarNormal(props: Props): React.Element<*> {
   const { tabScreens } = props;
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Tab.Navigator
-          tabBarOptions={{
-            activeTintColor: "tomato", //the colore of selected tab
-            inactiveTintColor: "gray", //the color of unselected tab
-          }}
-          screenOptions={createTabBarOpt}
-        >
-          {tabScreens.map((screen) => {
-            return (
-              <Tab.Screen
-                key={screen.name}
-                name={screen.name}
-                component={screen.componentFunc}
-              />
-            );
-          })}
-        </Tab.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: "tomato", //the colore of selected tab
+        inactiveTintColor: "gray", //the color of unselected tab
+      }}
+      screenOptions={createTabBarOpt}
+    >
+      {tabScreens.map((screen) => {
+        return (
+          <Tab.Screen
+            key={screen.name}
+            name={screen.name}
+            component={screen.componentFunc}
+          />
+        );
+      })}
+    </Tab.Navigator>
   );
 }

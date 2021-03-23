@@ -267,3 +267,22 @@ expo install @react-native-async-storage/async-storage
 30 //Flow type casting
     return (result: RestaurantInfoDetail[]);
     result is any, use this syntax, function will return  RestaurantInfoDetail[]
+
+31 install Firebase
+https://docs.expo.io/guides/using-firebase/
+dont use expo install firebase ,it will fail installation
+use yar add firebase
+
+32 Top 10 React Native UI libraries
+ https://blog.logrocket.com/comparing-react-native-ui-libraries/
+
+ 33 Flow type of styled component, use React.ComponentType<any>
+ export const AccountBackgroundCover: React.ComponentType<any> = styled.View`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 25, 255, 0.3);
+`;
+
+34 firebase
+https://console.firebase.google.com/project/meals-6827d/authentication/users
