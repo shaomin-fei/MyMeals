@@ -27,9 +27,9 @@ export const LoginScreen = ({
 }: {
   navigation: Object,
 }): React.Element<*> => {
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState("1@1.1");
   const [inputError, setInputError] = useState("");
-  const [pwdInput, setPwdInput] = useState("");
+  const [pwdInput, setPwdInput] = useState("123456");
   const authContext: AuthcontextValue = useContext(AuthContext);
   const logErrorString = authContext.error;
   useEffect(() => {

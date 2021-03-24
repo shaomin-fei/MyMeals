@@ -19,7 +19,7 @@ var firebaseConfig = {
 // Initialize Firebase
 if (firebase.apps.length === 0) {
   //only initialize once
-  const app = firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
 export const loginService = (
   username: string,
@@ -42,6 +42,6 @@ let authStateChangeCallback: null | ((Object) => void) = null;
 export const setAutStateChangeCallBack = (callBack: () => void) => {
   authStateChangeCallback = callBack;
 };
-// firebase.auth().onAuthStateChanged((usr) => {
-//   authStateChangeCallback && authStateChangeCallback(usr);
-// });
+firebase.auth().onAuthStateChanged((usr) => {
+  authStateChangeCallback && authStateChangeCallback(usr);
+});

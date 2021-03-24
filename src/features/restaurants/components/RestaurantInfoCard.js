@@ -14,6 +14,7 @@ import Open from "../../../../assets/open";
 import { RestaurantInfoDetail } from "../../../flow-types/RestaurantInfoType";
 import { Text } from "../../../components/typography/Text";
 import { FavouriteIcon } from "../../../components/FavouriteIcon";
+import { FadeInView } from "../../../components/animation/AnimationView";
 type Props = {
   restaurantInfoDetail: RestaurantInfoDetail,
 };
@@ -31,11 +32,6 @@ const RestaurandCardCover = styled(Card.Cover)`
 const RestaurantTitle = styled.Text`
   font-family: ${(props) => props.theme.fonts.heading};
   font-size: ${(props) => props.theme.fontSizes.body};
-  color: ${(props) => props.theme.colors.text.primary};
-`;
-const RestaurantAddress = styled.Text`
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
   color: ${(props) => props.theme.colors.text.primary};
 `;
 const RestaurantBaseInfo = styled.View`
@@ -71,32 +67,34 @@ export const RestaurantInfoCard = (props: Props): React.Element<*> => {
       ? restaurantInfoDetail.photos[0]
       : "https://picsum.photos/700";
   return (
-    <RestaurandCard elevation={5}>
-      <FavouriteIcon restaurantInfoDetail={restaurantInfoDetail} />
-      <RestaurandCardCover source={{ uri: photoUrl }} />
-      <RestaurantBaseInfo>
-        <RestaurantTitle vairant="body">
-          {restaurantInfoDetail.name}
-        </RestaurantTitle>
-        <Section>
-          <Rating>
-            {starArray.map((star) => {
-              return star;
-            })}
-          </Rating>
-          <OpenState>
-            {/* <RestaurantBaseInfo position="bottom" size="normal"> */}
-            {restaurantInfoDetail.isOpenNow && (
-              <SvgXml width={20} height={20} xml={Open} />
-            )}
-            {/* </RestaurantBaseInfo> */}
-          </OpenState>
-        </Section>
-        {/* <Spacer position="bottom" size="xl">
+    <FadeInView>
+      <RestaurandCard elevation={5}>
+        <FavouriteIcon restaurantInfoDetail={restaurantInfoDetail} />
+        <RestaurandCardCover source={{ uri: photoUrl }} />
+        <RestaurantBaseInfo>
+          <RestaurantTitle vairant="body">
+            {restaurantInfoDetail.name}
+          </RestaurantTitle>
+          <Section>
+            <Rating>
+              {starArray.map((star) => {
+                return star;
+              })}
+            </Rating>
+            <OpenState>
+              {/* <RestaurantBaseInfo position="bottom" size="normal"> */}
+              {restaurantInfoDetail.isOpenNow && (
+                <SvgXml width={20} height={20} xml={Open} />
+              )}
+              {/* </RestaurantBaseInfo> */}
+            </OpenState>
+          </Section>
+          {/* <Spacer position="bottom" size="xl">
           <RestaurantTitle>xxxx</RestaurantTitle>
         </Spacer> */}
-        <Text vairant="caption">{restaurantInfoDetail.address}</Text>
-      </RestaurantBaseInfo>
-    </RestaurandCard>
+          <Text vairant="caption">{restaurantInfoDetail.address}</Text>
+        </RestaurantBaseInfo>
+      </RestaurandCard>
+    </FadeInView>
   );
 };

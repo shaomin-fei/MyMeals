@@ -6,6 +6,8 @@
  */
 import * as React from "react";
 import styled from "styled-components";
+import LottieView from "lottie-react-native";
+
 import { Button } from "react-native-paper";
 import { Input, Icon } from "react-native-elements";
 
@@ -126,5 +128,30 @@ export const AccountBackgroundLightUp = ({
     <AccountBackground>
       <AccountBackgroundCover>{children}</AccountBackgroundCover>
     </AccountBackground>
+  );
+};
+
+const AnimationWrapper = styled.View`
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: 30px;
+  padding: ${(props) => props.theme.sizes.sm};
+`;
+
+export const AccountAnimation = ({
+  children,
+}: {
+  children?: Object,
+}): React.Element<*> => {
+  return (
+    <AnimationWrapper>
+      <LottieView
+        source={require("../../../../assets/watermelon.json")}
+        autoPlay
+        loop
+        resizeMode="cover"
+      />
+    </AnimationWrapper>
   );
 };

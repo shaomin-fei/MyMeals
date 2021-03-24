@@ -44,8 +44,14 @@ export const FavouriteContext: React.Context<any> = createContext();
 export const FavouriteContextProvider = (props: Object): React.Element<*> => {
   const [favourites, setFavourites] = useState(([]: RestaurantInfoDetail[]));
   const authContext: AuthcontextValue = useContext(AuthContext);
-  const uid = (authContext.user && authContext.user.user.uid.toString()) || "";
+  let uid = "";
+  if (authContext.user && authContext.user.user) {
+    uid = authContext.user.user.uid.toString();
+  }
   useEffect(() => {
+    if (!uid) {
+      return;
+    }
     getData(uid)
       .then((data) => {
         data && setFavourites(data);
@@ -55,6 +61,9 @@ export const FavouriteContextProvider = (props: Object): React.Element<*> => {
       });
   }, [uid]);
   useEffect(() => {
+    if (!uid) {
+      return;
+    }
     storeData(favourites, uid);
   }, [favourites, uid]);
   const addFavourtie = (restaurant: RestaurantInfoDetail) => {

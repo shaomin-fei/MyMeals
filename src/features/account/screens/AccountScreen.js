@@ -11,6 +11,7 @@ import {
   AccountOptionSelectArea,
   AccountButton,
   AppTitle,
+  AccountAnimation,
 } from "../components/AccountStyles";
 import { Spacer } from "../../../components/Spacer";
 
@@ -21,6 +22,7 @@ export const AccountScreen = ({
 }): React.Element<*> => {
   return (
     <AccountBackgroundLightUp>
+      <AccountAnimation />
       <Spacer>
         <AppTitle>Meals To Go</AppTitle>
       </Spacer>

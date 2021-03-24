@@ -12,7 +12,7 @@ import {
   AuthContext,
   AuthcontextValue,
 } from "../../services/authentication/AuthenticationContext";
-import { SettingScreen } from "../../features/restaurants/screens/SettingScreen";
+import { SetingsNavigation } from "./SettingsNavigation";
 import { MapScreen } from "../../features/Map/screens/MapScreen";
 import { RestaurantNavigator } from "../../components/navigation-bar/RestaurantNavigator";
 import { NavTabInfo } from "../../components/navigation-bar/NavTabInfo";
@@ -31,7 +31,7 @@ screens.push(mapScreen);
 
 const settingScreen = new NavTabInfo();
 settingScreen.name = "Setting";
-settingScreen.componentFunc = SettingScreen;
+settingScreen.componentFunc = SetingsNavigation;
 screens.push(settingScreen);
 
 export function AppNavigationBar(): React.Element<*> {

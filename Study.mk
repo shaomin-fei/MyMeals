@@ -286,3 +286,12 @@ use yar add firebase
 
 34 firebase
 https://console.firebase.google.com/project/meals-6827d/authentication/users
+
+35 lotti: library for animating
+https://docs.expo.io/versions/latest/sdk/lottie/
+https://github.com/lottie-react-native/lottie-react-native
+expo install lottie-react-native
+
+36 use Expo publish to pubish app to expo website
+
+37 use yarn flow check to do syntac check, yarn lint doesn't work

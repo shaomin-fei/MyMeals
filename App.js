@@ -6,7 +6,6 @@
  */
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
-import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components/native";
 import {
   useFonts as useOswaldFont,

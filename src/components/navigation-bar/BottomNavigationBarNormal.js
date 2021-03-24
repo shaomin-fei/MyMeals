@@ -11,6 +11,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+import { RestaurantContextProvider } from "../../services/restaurant/restaurant.context";
+import { LocationContextProvider } from "../../services/location/LocationContext";
+import { FavouriteContextProvider } from "../../services/favourites/FavouriteContext";
 import type { NavTabInfo } from "./NavTabInfo";
 const Tab = createBottomTabNavigator();
 type Props = {
@@ -41,22 +44,28 @@ const createTabBarOpt = ({ route }) => {
 export function BottomNavitationBarNormal(props: Props): React.Element<*> {
   const { tabScreens } = props;
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "tomato", //the colore of selected tab
-        inactiveTintColor: "gray", //the color of unselected tab
-      }}
-      screenOptions={createTabBarOpt}
-    >
-      {tabScreens.map((screen) => {
-        return (
-          <Tab.Screen
-            key={screen.name}
-            name={screen.name}
-            component={screen.componentFunc}
-          />
-        );
-      })}
-    </Tab.Navigator>
+    <FavouriteContextProvider>
+      <LocationContextProvider>
+        <RestaurantContextProvider>
+          <Tab.Navigator
+            tabBarOptions={{
+              activeTintColor: "tomato", //the colore of selected tab
+              inactiveTintColor: "gray", //the color of unselected tab
+            }}
+            screenOptions={createTabBarOpt}
+          >
+            {tabScreens.map((screen) => {
+              return (
+                <Tab.Screen
+                  key={screen.name}
+                  name={screen.name}
+                  component={screen.componentFunc}
+                />
+              );
+            })}
+          </Tab.Navigator>
+        </RestaurantContextProvider>
+      </LocationContextProvider>
+    </FavouriteContextProvider>
   );
 }

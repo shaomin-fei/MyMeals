@@ -6,16 +6,14 @@
  */
 import * as React from "react";
 import styled from "styled-components";
-import { FlatList, TouchableOpacity } from "react-native";
-import { Divider } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
+
 // don't use my customize wrapper, use the third party library
 //import { SafeAreaViewWrapper } from "../../../components/SafeAreaViewWrapper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { RestaurantInfoCard } from "../components/RestaurantInfoCard";
 
-import { Spacer } from "../../../components/Spacer";
-import { Text } from "../../../components/typography/Text";
 import { restaurantContext } from "../../../services/restaurant/restaurant.context";
 import { Loading } from "../../../components/loading/Loading";
 import {
@@ -30,15 +28,7 @@ import {
 
 import { FavouriteBar } from "../../../components/FavouriteBar";
 
-const ListView = styled.View`
-  background-color: ${(props) => props.theme.colors.bg.secondary};
-  flex: 1;
-`;
-const FatListVWithPadding = styled(FlatList).attrs((props) => ({
-  contentContainerStyle: { padding: 16, paddingTop: 0 },
-}))`
-  flex: 1;
-`;
+import { ListView, FatListVWithPadding } from "../components/Retaruant.styles";
 const StyledSafeAreaView = styled(SafeAreaView)`
   flex: 1;
 `;
@@ -105,10 +95,6 @@ export const RestaurantScreen = ({
           }
         />
       </ListView>
-      <Divider style={{ borderWidth: 10, borderColor: "red" }} />
-      <Spacer>
-        <Text>The End</Text>
-      </Spacer>
     </StyledSafeAreaView>
   );
 };

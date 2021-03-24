@@ -4,7 +4,6 @@
  * @Author: Shaomin Fei
  * @Date: 2021-03-23 09:36:54
  */
-import firebase from "firebase";
 import * as React from "react";
 import { createContext, useState } from "react";
 
@@ -78,7 +77,7 @@ export const AuthContextProvider = ({
         .finally(() => {
           setIsLogging(false);
         });
-    }, 2000);
+    }, 0);
   };
   const logout = () => {
     accountLogout();
