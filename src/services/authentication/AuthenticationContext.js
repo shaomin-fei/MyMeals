@@ -23,6 +23,12 @@ export class AuthcontextValue {
   logIn: (string, string) => void;
   register: (string, string) => void;
   logout: () => void;
+  getUserId(): string {
+    if (this.user && this.user.uid) {
+      return this.user.uid;
+    }
+    return "";
+  }
 }
 export const AuthContextProvider = ({
   children,

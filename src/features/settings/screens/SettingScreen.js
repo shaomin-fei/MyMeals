@@ -5,8 +5,11 @@
  * @Date: 2021-03-21 13:04:17
  */
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { List } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { SettingMainView } from "../components/SettingScreenStyles";
 import {
@@ -26,10 +29,25 @@ export const SettingScreen = ({
   navigation: Object,
 }): React.Element<*> => {
   const authContext: AuthcontextValue = useContext(AuthContext);
+  const uid = authContext.getUserId();
+  const [photoUri, setPhotoUri] = useState("");
+  useEffect(() => {
+    (async () => {
+      const photo = await AsyncStorage.getItem(`@profile_photo_${uid}`);
+      setPhotoUri(photo);
+    })();
+  }, [uid]);
+  useFocusEffect(() => {
+    (async () => {
+      const photo = await AsyncStorage.getItem(`@profile_photo_${uid}`);
+      setPhotoUri(photo);
+    })();
+  });
   return (
     <SettingMainView>
-      <AvartaHeader />
-
+      <TouchableOpacity onPress={() => navigation.navigate("TakePhotoScreen")}>
+        <AvartaHeader photoUri={photoUri} />
+      </TouchableOpacity>
       <List.Section>
         <StyledItem
           title="Favourites"

@@ -22,12 +22,25 @@ const TextEmail = styled.Text`
   font-size: 20px;
   padding: 10px;
 `;
-export const AvartaHeader = (): React.Element<*> => {
+export const AvartaHeader = ({
+  photoUri,
+}: {
+  photoUri?: string,
+}): React.Element<*> => {
   const authContext: AuthcontextValue = useContext(AuthContext);
 
   return (
     <AvartaView>
-      <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+      {photoUri ? (
+        <Avatar.Image
+          size={180}
+          source={{ uri: photoUri }}
+          backgroundColor="#2182BD"
+        />
+      ) : (
+        <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+      )}
+
       <TextEmail>
         {authContext.user &&
           authContext.user.user &&

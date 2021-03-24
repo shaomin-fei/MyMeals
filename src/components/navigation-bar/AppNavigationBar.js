@@ -19,6 +19,12 @@ import { NavTabInfo } from "../../components/navigation-bar/NavTabInfo";
 import { AccountNavigator } from "../navigation-bar/AccountNavigatior";
 
 const screens = [];
+
+const settingScreen = new NavTabInfo();
+settingScreen.name = "Setting";
+settingScreen.componentFunc = SetingsNavigation;
+screens.push(settingScreen);
+
 const restaurantScreen = new NavTabInfo();
 restaurantScreen.name = "Restaurant";
 restaurantScreen.componentFunc = RestaurantNavigator;
@@ -28,11 +34,6 @@ const mapScreen = new NavTabInfo();
 mapScreen.name = "Map";
 mapScreen.componentFunc = MapScreen;
 screens.push(mapScreen);
-
-const settingScreen = new NavTabInfo();
-settingScreen.name = "Setting";
-settingScreen.componentFunc = SetingsNavigation;
-screens.push(settingScreen);
 
 export function AppNavigationBar(): React.Element<*> {
   const contextAuth: AuthcontextValue = React.useContext(AuthContext);

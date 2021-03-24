@@ -14,6 +14,7 @@ import {
 import { SettingScreen } from "../../features/settings/screens/SettingScreen";
 
 import { FavouriteDetailScreen } from "../../features/settings/screens/FavouriteDetailsScreen";
+import { TakePhotoScreen } from "../../features/settings/screens/TakePhotoScreen";
 
 const SetingsStack = createStackNavigator();
 export const SetingsNavigation = (): React.Element<*> => {
@@ -27,6 +28,7 @@ export const SetingsNavigation = (): React.Element<*> => {
         name="SettingFavourites"
         component={FavouriteDetailScreen}
       />
+      <SetingsStack.Screen name="TakePhotoScreen" component={TakePhotoScreen} />
     </SetingsStack.Navigator>
   );
 };

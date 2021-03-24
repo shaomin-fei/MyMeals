@@ -295,3 +295,5 @@ expo install lottie-react-native
 36 use Expo publish to pubish app to expo website
 
 37 use yarn flow check to do syntac check, yarn lint doesn't work
+
+38 configuration, ajax

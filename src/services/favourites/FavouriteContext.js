@@ -44,10 +44,8 @@ export const FavouriteContext: React.Context<any> = createContext();
 export const FavouriteContextProvider = (props: Object): React.Element<*> => {
   const [favourites, setFavourites] = useState(([]: RestaurantInfoDetail[]));
   const authContext: AuthcontextValue = useContext(AuthContext);
-  let uid = "";
-  if (authContext.user && authContext.user.user) {
-    uid = authContext.user.user.uid.toString();
-  }
+  const uid = authContext.getUserId();
+
   useEffect(() => {
     if (!uid) {
       return;
