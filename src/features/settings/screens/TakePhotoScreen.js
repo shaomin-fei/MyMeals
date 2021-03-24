@@ -61,7 +61,6 @@ export const TakePhotoScreen = ({
   }, []);
 
   const snap = async () => {
-    console.log("snapped");
     if (cameraRef.current && cameraReady) {
       const photo = await cameraRef.current.takePictureAsync();
       await AsyncStorage.setItem(`@profile_photo_${uid}`, photo.uri);

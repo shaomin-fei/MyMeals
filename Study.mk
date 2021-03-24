@@ -296,4 +296,32 @@ expo install lottie-react-native
 
 37 use yarn flow check to do syntac check, yarn lint doesn't work
 
-38 configuration, ajax
+38 configuration
+**install yarn add react-native-dotenv
+**modify babel.config.js, the value of the path is the configuration name
+**Don't use Flow in this file, or when run expo build:android, the bundle will report error.
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ["babel-preset-expo"],
+    plugins: [
+      [
+        "module:react-native-dotenv",
+        {
+          moduleName: "@env",
+          path: ".env.development",
+          blacklist: null,
+          whitelist: null,
+          safe: false,
+          allowUndefined: true,
+        },
+      ],
+    ],
+  };
+};
+39 Mapview doesn't work when publish app as stand alone, it needs integrate google Account
+https://docs.expo.io/versions/latest/sdk/map-view/#deploying-to-a-standalone-app-on-android
+
+
+39.build stand alone apk
+https://docs.expo.io/distribution/building-standalone-apps/

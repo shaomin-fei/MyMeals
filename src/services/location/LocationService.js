@@ -7,23 +7,31 @@
 
 import { locations } from "./mock/LocationMock";
 import { LocationInfo, LatLng } from "../../flow-types/LocationTInfo";
+import { configInfo } from "../../infrastructure/config/config";
 
 export const requestLocation = (location: string): Promise<LocationInfo> => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const data = locations[location];
-      if (!data) {
-        reject("Don't found location");
-        return;
-      }
-      const result = locationTransform(data.results);
-      if (result && result.length > 0) {
-        resolve(result[0]);
-      } else {
-        reject("None or duplicate locations found");
-      }
-    }, 2000);
+    console.log(configInfo);
+    if (configInfo && configInfo.mockData.toUpperCase() === "TRUE") {
+      mockLocationData(location, resolve, reject);
+    } else {
+    }
   });
+};
+const mockLocationData = (location, resolve, reject) => {
+  setTimeout(() => {
+    const data = locations[location];
+    if (!data) {
+      reject("Don't found location");
+      return;
+    }
+    const result = locationTransform(data.results);
+    if (result && result.length > 0) {
+      resolve(result[0]);
+    } else {
+      reject("None or duplicate locations found");
+    }
+  }, 2000);
 };
 export const locationTransform = (data: Object[]): Object[] | null => {
   if (!data) {
