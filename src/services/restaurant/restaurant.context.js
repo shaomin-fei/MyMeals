@@ -6,9 +6,11 @@
  */
 import * as React from "react";
 import { useState, createContext, useEffect } from "react";
+
 import { restaurantRequest } from "./restaurant.service";
 import { LocationContext } from "../location/LocationContext";
 import { LocationInfo } from "../../flow-types/LocationTInfo";
+
 export const restaurantContext: React.Context<any> = createContext();
 export const RestaurantContextProvider = ({
   children,
@@ -20,6 +22,7 @@ export const RestaurantContextProvider = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
+
   useEffect(() => {
     if (!location) {
       setRestaurants([]);

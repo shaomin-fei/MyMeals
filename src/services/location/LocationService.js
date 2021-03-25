@@ -11,7 +11,6 @@ import { configInfo } from "../../infrastructure/config/config";
 
 export const requestLocation = (location: string): Promise<LocationInfo> => {
   return new Promise((resolve, reject) => {
-    console.log(configInfo);
     if (configInfo && configInfo.mockData.toUpperCase() === "TRUE") {
       mockLocationData(location, resolve, reject);
     } else {

@@ -17,4 +17,5 @@ export class RestaurantInfoDetail {
   isCloseTemporarily: boolean = false;
   latlng: LatLng = new LatLng();
   placeId: string = "";
+  type: string = "";
 }

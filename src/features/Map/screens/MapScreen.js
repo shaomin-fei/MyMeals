@@ -36,16 +36,14 @@ export const MapScreen = ({
   const initRegion = {
     latitude: location.geometry.lat,
     longitude: location.geometry.lng,
-    latitudeDelta:
-      location.viewport.northeast.lat - location.viewport.southwest.lat,
+    latitudeDelta: 0.0002,
     longitudeDelta: 0.002,
   };
   useEffect(() => {
     const region = {
       latitude: location.geometry.lat,
       longitude: location.geometry.lng,
-      latitudeDelta:
-        location.viewport.northeast.lat - location.viewport.southwest.lat,
+      latitudeDelta: 0.0002,
       longitudeDelta: 0.002,
     };
     setMapRegion(region);

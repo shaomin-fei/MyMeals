@@ -325,3 +325,18 @@ https://docs.expo.io/versions/latest/sdk/map-view/#deploying-to-a-standalone-app
 
 39.build stand alone apk
 https://docs.expo.io/distribution/building-standalone-apps/
+
+40 get device location
+expo install expo-location
+
+41 env doesn't update.
+when change contents of env file, in the code, the value is not changed. You should clear the cache
+
+expo build:ios --clear-provisioning-profile
+OR
+expo r -c
+r is short for start, and -c is short for --clear
+OR
+add -c to script 
+
+"start": "expo start -c",
